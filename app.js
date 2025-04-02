@@ -30,8 +30,7 @@ app.set("view engine", "ejs");
 // A patir de agora utilizaremos a visualização através de render
 
 const index =
-  "<a href='/home'>Home</a> <br><a href='/sobre'>Sobre</a> <br> <a href='/login'>Login</a> <br> <a href='/cadastro'>Cadastro</a>";
-const home = "Você está na página HOME <br> <a href='/'>Voltar</a>";
+  "<a href='/sobre'>Sobre</a> <br> <a href='/login'>Login</a> <br> <a href='/cadastro'>Cadastro</a>";
 const sobre = "Você está na página SOBRE  <br> <a href='/'>Voltar</a>";
 const login = "Você está na página de LOGIN <br> <a href='/'>Voltar</a>";
 const cadastro = "Você está na página de CADASTRO  <br> <a href='/'>Voltar</a>";
@@ -44,34 +43,41 @@ app.get("/", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:3000/
   // res.send(index);
 
-  res.render("cadastroFormulario"); // Utilizando o render pela pasta views
+  console.log("GET / INDEX");
+  // res.render("index"); // Utilizando o render pela pasta views
+
+  res.redirect("/cadastro");
 });
 
-app.get("/home", (req, res) => {
-  // Rota raiz do meu servidor da pagina HOME,acesse o browser com o endereço http://localhost:3000/hom
-  res.send(home);
-});
-
+// GET SOBRE
 app.get("/sobre", (req, res) => {
   // Rota raiz do meu servidor da pagina SOBRE, acesse o browser com o endereço http://localhost:3000/sobre
+  console.log("GET / SOBRE");
   res.send(sobre);
 });
 
+// GET LOGIN
 app.get("/login", (req, res) => {
   // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
-  res.render("loginFormulario");
+  console.log("GET / LOGIN");
+  res.render("login");
 });
 
+// POST LOGIN
 app.post("/login", (req, res) => {
   // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
+  console.log("POST / LOGIN");
   res.send("login ainda não emplementado.");
 });
 
+// GET CADASTRO
 app.get("/cadastro", (req, res) => {
   // Rota raiz do meu servidor da pagina CADASTRO, acesse o browser com o endereço http://localhost:3000/cadastro
-  res.send(cadastro);
+  console.log("GET / CADASTRO");
+  res.send("cadastro");
 });
 
+// POST CADASTRO
 app.post("/cadastro", (req, res) => {
   // Linha para depurar se esta vindo no req.body
   !req.body
@@ -80,6 +86,7 @@ app.post("/cadastro", (req, res) => {
   // Rota raiz do meu servidor da pagina CADASTRO, acesse o browser com o endereço http://localhost:3000/cadastro
 
   // Colocar aqui as validações e inclusões no banco de dados do cadastro do usuario
+  console.log("POST / CADASTRO");
   res.send(
     `Bem-vindo usuario: ${req.body.nome}, seu email é ${req.body.email}`
   );
