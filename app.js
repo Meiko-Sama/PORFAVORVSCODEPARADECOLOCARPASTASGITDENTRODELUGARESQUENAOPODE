@@ -95,29 +95,30 @@ app.post("/cadastro", (req, res) => {
   const query =
     "SELECT * FROM users WHERE email = ? OR cpf = ? OR rg = $rg OR username = ?";
   // INSERT INTO users (username, password, email, celular, cpf, rg) VALUES (?,?,?,?,?,?)
-  db.get(query, [email, cpf, rg, username], (err, row) => {});
+  db.get(query, [email, cpf, rg, username], (err, row) => {
+    if (err) throw err;
+
+    if (row) {
+      // A váriavel row irá retornar os dados do bancos de dados executados
+      // através do SQL, variável query
+      res.send("Usuário já cadastrado, refaça o cadastro");
+    } else {
+      // 3 - Se o usuario não existe no banco cadastrar, redirecione ele para a pagina do cadastro
+      const insertQuery =
+        "INSERT INTO users (username, password, email, celular, cpf, rg) VALUES (?,?,?,?,?,?)";
+      db.run(
+        insertQuery,
+        [username, password, email, celular, cpf, rg],
+        (err) => {
+          // Inserir a lógica do INSERT
+          if (err) throw err;
+          res.send("Usuário cadastro, com sucesso");
+        }
+      );
+    }
+  });
 
   // O app.listen() precisa ser SEMPRE ser executado por último. (app.js)
-  if (err) throw err;
-
-  if (row) {
-    // A váriavel row irá retornar os dados do bancos de dados executados
-    // através do SQL, variável query
-    res.send("Usuário já cadastrado, refaça o cadastro");
-  } else {
-    // 3 - Se o usuario não existe no banco cadastrar, redirecione ele para a pagina do cadastro
-    const insertQuery =
-      "INSERT INTO users (username, password, email, celular, cpf, rg) VALUES (?,?,?,?,?,?)";
-    db.run(
-      insertQuery,
-      [username, password, email, celular, cpf, rg],
-      (err) => {
-        // Inserir a lógica do INSERT
-        if (err) throw err;
-        res.send("Usuário cadastro, com sucesso");
-      }
-    );
-  }
 });
 app.listen(PORT, () => {
   console.log(`Servidor sendo executado na porta ${PORT}!`);
