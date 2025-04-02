@@ -14,7 +14,7 @@ const db = new sqlite3.Database("user.db"); // Instância para o uso do SQlite3,
 db.serialize(() => {
   // Este método permite enviar comandos SQL em modo 'SEQUENCIAL'
   db.run(
-    "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, password TEXT, email TEXT, celular TEXT, cpf TEXT, rg TEXT)"
+    "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT, celular TEXT, cpf TEXT, rg TEXT)"
   );
 });
 
@@ -31,9 +31,9 @@ app.set("view engine", "ejs");
 
 const index =
   "<a href='/sobre'>Sobre</a> <br> <a href='/login'>Login</a> <br> <a href='/cadastro'>Cadastro</a>";
-const sobre = "Você está na página SOBRE  <br> <a href='/'>Voltar</a>";
+// const sobre = "Você está na página SOBRE  <br> <a href='/'>Voltar</a>";
 const login = "Você está na página de LOGIN <br> <a href='/'>Voltar</a>";
-const cadastro = "Você está na página de CADASTRO  <br> <a href='/'>Voltar</a>";
+// const cadastro = "Você está na página de CADASTRO  <br> <a href='/'>Voltar</a>";
 
 // Método express.get necessita de dois parâmetros. Na ARROW FUNCTION, o
 // primeiro são os dados do servidor (REQUISITION - 'req') o segundo, são os
@@ -53,7 +53,7 @@ app.get("/", (req, res) => {
 app.get("/sobre", (req, res) => {
   // Rota raiz do meu servidor da pagina SOBRE, acesse o browser com o endereço http://localhost:3000/sobre
   console.log("GET / SOBRE");
-  res.send(sobre);
+  res.render("sobre");
 });
 
 // GET LOGIN
@@ -74,25 +74,51 @@ app.post("/login", (req, res) => {
 app.get("/cadastro", (req, res) => {
   // Rota raiz do meu servidor da pagina CADASTRO, acesse o browser com o endereço http://localhost:3000/cadastro
   console.log("GET / CADASTRO");
-  res.send("cadastro");
+  res.render("cadastro");
 });
 
 // POST CADASTRO
 app.post("/cadastro", (req, res) => {
   // Linha para depurar se esta vindo no req.body
   !req.body
-    ? console.log(JSON.stringify(req.body))
-    : console.log(`Body vazio: ${req.body}`);
+    ? console.log(`Body vazio: ${req.body}`)
+    : console.log(JSON.stringify(req.body));
   // Rota raiz do meu servidor da pagina CADASTRO, acesse o browser com o endereço http://localhost:3000/cadastro
 
   // Colocar aqui as validações e inclusões no banco de dados do cadastro do usuario
   console.log("POST / CADASTRO");
-  res.send(
-    `Bem-vindo usuario: ${req.body.nome}, seu email é ${req.body.email}`
-  );
-});
+  const { username, password, email, celular, cpf, rg } = req.body;
 
-// O app.listen() precisa ser SEMPRE ser executado por último. (app.js)
-app.listen(PORT, () => {
-  console.log(`Servidor sendo executado na porta ${PORT}!`);
+  // 1 - Validar dados do usuario
+
+  // 2 - Saber se ele já existe no banco
+  const query =
+    "SELECT * FROM users WHERE email = ? OR cpf = ? OR rg = $rg OR username = ?";
+  // INSERT INTO users (username, password, email, celular, cpf, rg) VALUES (?,?,?,?,?,?)
+  db.get(query, [email, cpf, rg, username], (eer, row) => {});
+
+  // O app.listen() precisa ser SEMPRE ser executado por último. (app.js)
+  app.listen(PORT, () => {
+    console.log(`Servidor sendo executado na porta ${PORT}!`);
+    if (err) throw err;
+
+    if (row) {
+      // A váriavel row irá retornar os dados do bancos de dados executados
+      // através do SQL, variável query
+      res.send("Usuário já cadastrado, refaça o cadastro");
+    } else {
+      // 3 - Se o usuario não existe no banco cadastrar, redirecione ele para a pagina do cadastro
+      const insertQuery =
+        "INSERT INTO users (username, password, email, celular, cpf, rg) VALUES (?,?,?,?,?,?)";
+      db.run(
+        insertQuery,
+        [username, password, email, celular, cpf, rg],
+        (err) => {
+          // Inserir a lógica do INSERT
+          if (err) throw err;
+          res.send("Usuário cadastro, com sucesso");
+        }
+      );
+    }
+  });
 });

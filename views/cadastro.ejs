@@ -12,6 +12,7 @@
     <title>Atividade Formulário</title>
   </head>
   <body>
+    <%- include("menu") %>
     <!-- Chuva -->
 
     <div class="container_rain">
@@ -21,7 +22,7 @@
     </div>
 
     <!-- SEÇÃO QUE ENGLOBA O TITULO E IMAGEM -->
-    <secction class="container">
+    <section class="container">
       <div class="imagem_container">
         <h1>Crie sua Conta</h1>
         <p>
@@ -38,7 +39,7 @@
         </div>
 
         <div class="input_data">
-          <input type="text" name="nome" id="nome" required />
+          <input type="text" name="username" id="nome" required />
           <label for="">Nome</label>
         </div>
 
@@ -48,7 +49,7 @@
         </div>
 
         <div class="input_data">
-          <input type="password" name="senha" id="senha" required />
+          <input type="password" name="password" id="senha" required />
           <label for="">Senha</label>
         </div>
 
@@ -58,7 +59,7 @@
         </div>
 
         <div class="input_data">
-          <input type="tel" name="tel" id="tel" required />
+          <input type="tel" name="celular" id="tel" required />
           <label for="">Telefone</label>
         </div>
 
@@ -77,6 +78,7 @@
           <button id="btnSubmit" type="submit">Enviar</button>
         </div>
       </form>
-    </secction>
+    </section>
+    <%- include("footer") %>
   </body>
 </html>
