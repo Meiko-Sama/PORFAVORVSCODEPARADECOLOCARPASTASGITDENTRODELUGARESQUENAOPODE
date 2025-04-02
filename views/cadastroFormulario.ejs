@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- LINK EXTERNO DO JS e do CSS -->
+    <!-- <script src="../static/js/scripts.js" defer></script> -->
+    <link rel="stylesheet" href="../static/styles/styles.css" />
+
+    <!-- TITULO DO SITE -->
+    <title>Atividade Formulário</title>
+  </head>
+  <body>
+    <!-- Chuva -->
+
+    <div class="container_rain">
+      <span class="cloud"></span>
+      <span class="cloud"></span>
+      <span class="cloud"></span>
+    </div>
+
+    <!-- SEÇÃO QUE ENGLOBA O TITULO E IMAGEM -->
+    <secction class="container">
+      <div class="imagem_container">
+        <h1>Crie sua Conta</h1>
+        <p>
+          Compartilhe suas aventuras e <br />
+          descubra novos lugares ao redor do mundo!
+        </p>
+      </div>
+
+      <!-- FORMULARIO -->
+      <form id="cadastro" method="post" action="/cadastro">
+        <div class="title">
+          <h1>Cadastre-se</h1>
+          <p>Preencha os campos abaixo e torne-se parte da nossa comunidade.</p>
+        </div>
+
+        <div class="input_data">
+          <input type="text" name="nome" id="nome" required />
+          <label for="">Nome</label>
+        </div>
+
+        <div class="input_data">
+          <input type="email" name="email" id="email" required />
+          <label for="">Email</label>
+        </div>
+
+        <div class="input_data">
+          <input type="password" name="senha" id="senha" required />
+          <label for="">Senha</label>
+        </div>
+
+        <div class="input_data">
+          <input type="password" name="csenha" id="csenha" required />
+          <label for="">Confirmar senha</label>
+        </div>
+
+        <div class="input_data">
+          <input type="tel" name="tel" id="tel" required />
+          <label for="">Telefone</label>
+        </div>
+
+        <div class="input_data">
+          <input type="text" name="cpf" id="cpf" required />
+          <label for="">CPF</label>
+        </div>
+
+        <div class="input_data">
+          <input type="text" name="rg" id="rg" required />
+          <label for="">RG</label>
+        </div>
+
+        <div class="btnArea">
+          <p class="msgError"></p>
+          <button id="btnSubmit" type="submit">Enviar</button>
+        </div>
+      </form>
+    </secction>
+  </body>
+</html>

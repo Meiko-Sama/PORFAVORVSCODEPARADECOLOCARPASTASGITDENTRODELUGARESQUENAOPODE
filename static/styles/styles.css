@@ -1,0 +1,544 @@
+/* FONTES SENDO UTILIZADAS */
+
+@font-face {
+  font-family: "Copperplate";
+  src: url(../fonts/Copperplate.otf);
+}
+
+@font-face {
+  font-family: "JoseFins";
+  src: url(../fonts/JosefinSans.ttf);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mudanças BODY */
+
+body {
+  height: 100vh;
+  background-color: #375534;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container_rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100vh;
+  width: 400px;
+
+  background-color: transparent;
+}
+
+.cloud {
+  position: absolute;
+
+  width: 250px;
+  height: 100px;
+
+  background: url(../img/nuvem.png) center / cover no-repeat;
+  filter: drop-shadow(2px 2px 20px #e3eed4);
+}
+
+.cloud:nth-child(1) {
+  top: 2.5%;
+  left: 5%;
+}
+
+.cloud:nth-child(2) {
+  z-index: 3000;
+
+  top: 2.5%;
+  left: 24%;
+}
+
+.cloud:nth-child(3) {
+  z-index: 3000;
+
+  top: 9.5%;
+  left: 5%;
+}
+
+.rain {
+  background-color: #e3eed4;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 0 50% 50% 50%;
+  transform: rotate(45deg);
+
+  box-shadow: inset -25px 10px 0px -10px #fefefe;
+
+  position: absolute;
+  top: 90px;
+
+  z-index: 1000;
+
+  transform-origin: bottom;
+  animation: animate 2s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
+
+  60% {
+    transform: translateY(80vh) scaleY(1);
+    opacity: 1;
+  }
+
+  80% {
+    transform: translateY(80vh) scaleY(0.2);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(80vh) scaleY(0.2);
+    opacity: 0;
+  }
+}
+
+/* Mudanças no SECTION */
+
+.container {
+  width: 80%;
+  height: 80%;
+  background-color: #e3eed4;
+
+  border-radius: 30px;
+  box-shadow: 2px -10px 35px #0f2a1d;
+
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+/* Mudanças na DIV */
+
+.imagem_container {
+  width: 100%;
+  height: 100%;
+  background: url(../img/wallpaper.jpg) center / cover no-repeat;
+  border-radius: 0 30px 30px 0;
+
+  padding-left: 10%;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* Deixando a imagem com filtro preto */
+
+.imagem_container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+/* Cores do H1 e do P */
+
+.imagem_container h1,
+.imagem_container p {
+  position: relative;
+  z-index: 2;
+  color: #e3eed4;
+}
+
+/* Mudando o tamanho e fonte de H1 e P */
+
+.imagem_container h1 {
+  font-family: "JoseFins";
+  font-size: 40px;
+}
+.imagem_container p {
+  font-family: "Copperplate";
+  font-size: 13px;
+}
+
+/* Mudanças no Formulário */
+
+#cadastro {
+  width: 80%;
+  height: 90%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+#cadastro h1,
+#cadastro p {
+  width: 100%;
+  text-align: center;
+  color: #0f2a1d;
+}
+
+#cadastro h1 {
+  font-family: "JoseFins";
+  font-size: 2em;
+}
+
+#cadastro p {
+  font-family: "Copperplate";
+  font-size: 11px;
+  font-style: italic;
+}
+
+#cadastro .input_data {
+  position: relative;
+  width: calc(50% - 15px);
+
+  display: flex;
+  flex-direction: column;
+
+  color: #0f2a1d;
+}
+
+#cadastro .input_data:nth-child(8) {
+  width: 100%;
+}
+
+#cadastro .input_data input {
+  position: relative;
+  z-index: 2;
+  font-family: "Copperplate";
+  font-size: 12px;
+
+  margin-top: 5px;
+  height: 30px;
+  padding: 5px 10px;
+
+  border: none;
+  outline: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #0f172a;
+
+  background-color: transparent;
+  color: #262a0f;
+}
+
+#cadastro .input_data label {
+  font-family: "Copperplate";
+  font-size: 11px;
+
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  transition: all 0.5s ease;
+
+  z-index: 1;
+
+  color: #0f2a1d;
+}
+
+#cadastro .input_data input:focus + label,
+#cadastro .input_data input:valid + label {
+  top: 10%;
+  left: 0;
+}
+
+#cadastro .btnArea {
+  width: 100%;
+}
+
+#cadastro .btnArea button {
+  border: 1px solid #0f2a1d;
+  width: 100%;
+  padding: 10px 20px;
+
+  background-color: #0f2a1d;
+  color: #e3eed4;
+
+  cursor: pointer;
+
+  font-family: "Copperplate";
+  font-size: 18px;
+  letter-spacing: 1.5px;
+}
+
+#cadastro .btnArea button:hover {
+  background-color: transparent;
+  border: 1px solid #0f2a1d;
+
+  color: #0f2a1d;
+  transition: all 0.5s ease;
+}
+
+#cadastro .btnArea .msgError {
+  margin-bottom: 10px;
+  height: 25px;
+  color: #ff0000;
+  font-style: italic;
+}
+
+/* Responsividade da tela */
+
+@media (max-width: 850px) {
+  body {
+    height: 100vh;
+    background-color: #b1fffe;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .imagem_container h1,
+  .imagem_container p {
+    position: relative;
+    z-index: 2;
+    color: #e3eed4;
+  }
+
+  .imagem_container h1 {
+    font-family: "JoseFins";
+    font-size: 30px;
+  }
+  .imagem_container p {
+    font-family: "Copperplate";
+    font-size: 11px;
+  }
+
+  .cloud {
+    position: absolute;
+
+    width: 200px;
+    height: 150px;
+
+    background: url(../img/nuvem.png) center / cover no-repeat;
+    filter: drop-shadow(2px 2px 20px #e3eed4);
+  }
+
+  .cloud:nth-child(1) {
+    z-index: 1000;
+
+    top: 1%;
+    left: -11%;
+  }
+
+  .cloud:nth-child(2) {
+    z-index: 3000;
+
+    top: 0%;
+    left: 11%;
+  }
+
+  .cloud:nth-child(3) {
+    z-index: 3000;
+
+    top: 3.5%;
+    left: -2%;
+  }
+
+  .rain {
+    background-color: #e3eed4;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 0 50% 50% 50%;
+    transform: rotate(45deg);
+
+    box-shadow: inset -25px 10px 0px -10px #fefefe;
+
+    position: absolute;
+    top: 90px;
+
+    z-index: 1000;
+
+    transform-origin: bottom;
+    animation: animate 2s linear infinite;
+  }
+
+  .rain {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  body {
+    background-color: #d9ff00;
+  }
+  .imagem_container h1 {
+    font-size: 35px;
+    padding-bottom: 10px;
+  }
+
+  .imagem_container p {
+    font-size: 14px;
+  }
+
+  .cloud {
+    width: 200px;
+    height: 100px;
+  }
+
+  .cloud:nth-child(1) {
+    z-index: 1000;
+    top: 1%;
+    left: -8%;
+  }
+
+  .cloud:nth-child(2) {
+    z-index: 3000;
+    top: 1%;
+    left: 11%;
+  }
+
+  .cloud:nth-child(3) {
+    z-index: 3000;
+    top: 5.5%;
+    left: -2%;
+  }
+
+  .container {
+    width: 90%;
+    height: 90%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30% 70%;
+  }
+
+  #cadastro {
+    gap: 16px;
+    width: 90%;
+  }
+
+  #cadastro h1 {
+    font-size: 20px;
+  }
+
+  #cadastro p {
+    font-size: 8px;
+  }
+  #cadastro .input_data input {
+    font-size: 10px;
+    margin-top: -2px;
+    height: 26px;
+  }
+
+  #cadastro .input_data label {
+    font-size: 9px;
+  }
+
+  #cadastro .btnArea {
+    width: 80%;
+  }
+
+  .rain {
+    display: none;
+  }
+
+  .btnArea {
+    position: relative;
+    z-index: 8000;
+  }
+}
+
+@media (max-width: 500px) {
+  body {
+    background-color: #df20e6;
+  }
+
+  .imagem_container h1 {
+    font-size: 25px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+  }
+  .imagem_container p {
+    font-size: 15px;
+    padding-right: 10px;
+  }
+
+  .cloud {
+    width: 200px;
+    height: 100px;
+  }
+
+  .cloud:nth-child(1) {
+    z-index: 1000;
+    top: 0%;
+    left: -12%;
+  }
+  .cloud:nth-child(2) {
+    top: 1%;
+    left: 17%;
+  }
+
+  .cloud:nth-child(3) {
+    top: 5.5%;
+    left: -1%;
+  }
+
+  .container {
+    width: 90%;
+    height: 90%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30% 70%;
+  }
+
+  #cadastro {
+    gap: 16px;
+  }
+
+  #cadastro h1 {
+    font-size: 20px;
+  }
+
+  #cadastro p {
+    font-size: 8px;
+  }
+  #cadastro .input_data input {
+    font-size: 10px;
+    margin-top: -2px;
+    height: 26px;
+  }
+
+  #cadastro .input_data label {
+    font-size: 9px;
+  }
+
+  #cadastro .btnArea {
+    width: 80%;
+  }
+
+  .rain {
+    display: none;
+  }
+
+  .btnArea {
+    position: relative;
+    z-index: 8000;
+  }
+}

@@ -1,0 +1,98 @@
+---INICIAR UM PROJETO NO NODE JS ---
+
+➜ npm init - Digite na "raiz" do projeto, serve para iniciar o projeto 
+
+➜ enpm install ou npm i - são as instalações das bibliotecas do node onde ele chama de 'MODULE'
+
+★ O npm init cria o arquivo chamado "package.json", este arquivo é usado pelo npm/node
+para 'administrar' os módulos/bibliotecas/libs do projeto.
+
+Para usar um projeto que usa o node, é só fazer download do projeto, abrir um terminal
+ir para a porta do projeto e digitar esse comando "npm instal" sem parâmetro, neste 
+processo o npm irá localizar o arquivo e vai instalar todas as dependências do projeto. 
+Para rodar o projeto, após instalar as dependências, na raiz do projeto, digite: 
+"node (arquivo do projeto).js"
+
+--- GIT ---
+
+"git clone <link do repositorio>"
+
+Caso já exista uma pasta com o nome do repositorio e esta pasta esteja vazia, o cloneirá ser feito,
+caso a pasta contenha algum arquivo , o 'git clone' não ira funcionar, para este caso digite:
+"git clone <nome do repositorio> nome da pasta" onde "nome da pasta" precisa ser diferente da
+pasta do repositorio. Por padrão o git cria a pasta com o nome do repositorio
+
+ --- FUNCIONAMENTO DO EXPRESS ---
+
+➜ Implementa rotas, middlewares e renderização de páginas para "TEMPLATES"
+
+★ Middlewares - Termo usado para indentificar extensões a um LIB existente.
+
+As rotas e renderização são considerados middlewares, criados pela a equipe de 
+desenvolvimento do ExpressJS. O ExpressJS implementa e melhora a biblioteca do
+nodeJS que manipula o protocolo HTTP/HTTPS
+
+No ExpressJS, para configurar uma pasta, no sistema de arquivos, o metodo utilizado
+é o 'use', este método precisa de dois parâmetros, o primiero, é como o cliente HTTP
+irá requisitar o arquivo, ou seja, este parâmetro fará parte da URL que o BROWSER(cliente)
+irá solicitar.
+
+O segundo parâmetro é o caminho da porta, no sistema de arquivos do sistema operacional
+em que o back-end está rodando. Portanto deve-se obedecer as regras do sistemas de arquivos do SO
+
+-> EXEMPLO <-
+
+app.use("/static", express.static( __dirname + "/static"));
+
+NA QUAL:
+
+"/static" = "ENDPOINT"/"rota" que o cliente irá visualizar
+
+express.static = Middleware p/configurar uma "pasta" c/ arquivo estaticos
+
+( __dirname + "/static") = "__dirname ", é uma variável interna do node, ela indentifica a pasta
+do projeto no SO (Sistemas de Arquivos)
+
+--- EJS ---
+
+O EJS é o middleware usado para "renderizar" as páginas HTML/CSS na sua aplicação. Todos os 
+arquivos pelo EJS devem ter a extensão ".ejs", o arquivo pode conter: HTML/CSS/JavaScript
+além disso conter "scripts" para renderizar as páginas no servidor e formar o arquivo final,
+que será enviado ao cliente
+
+Problema de GIT HUB - ELE SUMIU O QUE EU FAÇO?? -
+
+⚪ Verificar na raiz do repositorio se existe a pasta .GIT, para listar os arquivos: Utilizar
+o comando "ls -la"
+
+⚪ Verificar se nas pastas internas do projeto não há outras pastas .git
+
+    ◻️ Utilize o comando 'find . -name "nome do arquivo/pasta que quer achar.
+
+    ◻️ Caso existe mais um git no repositório tem que utilizar os comandos 'rm -Rf ./caminho_do_arquivo'
+    para apagar ela. CUIDADO ao apagar, pois pode acabar apagando o repositorio ou o GIT ERRADO.
+
+    ◻️ Se você tiver MAIS de dois repositórios git terá que apagar todos os repositorios e fazer um do zero.
+
+⚪ Verifique se o repositório está no GITHUB e verifique qual foi o ultimo COMMIT e se está igual
+ao repositório local.
+    
+    ◻️ Como arrumar ele fora de sincronia ou quando o repositorio foge do git, simples utilize o comando 
+    "cat .git/config" para checar se o remote Origin tem a url do seu repositorio.
+
+    ◻️ Se estiver apontado, verifica se o seu repositório está vazio ou está com todos os commits possíveis:
+            
+            🇧🇷 Tem que apagar o arquivo .git e arrumar a origem do projeto, utilizando o comando "rm -Rf .git"
+            
+            🇧🇷 Caso o repositorio não existe tem que apagar o repositorio local tanto o remoto.
+
+            🇧🇷 Ao apagar inicie de novo o git local com o "git init" e depois disso utilize o comando "git remote 
+            add nomedorepositorio.git" para colocar. Utilize o comando "git add ." para dar commit em todos os arquivos.
+            Caso o abençoado adicione uma pasta .git DENOVO apague utilizando "rm -Rf ./pastacasoeleadicionou/.git".
+
+            🇧🇷 Dando erro ainda? Faz o seguinte, o professor arruma pra voce!! Ou não...  
+
+Todo processamento realizado pelo backend é feito analisando o método HTTP enviado pelo cliente
+Para processar "formulario"HTML/CSS, o método ideal é o POST.
+
+
