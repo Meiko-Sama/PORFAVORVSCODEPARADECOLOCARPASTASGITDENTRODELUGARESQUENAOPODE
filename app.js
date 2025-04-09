@@ -49,6 +49,15 @@ app.get("/", (req, res) => {
   res.redirect("/cadastro");
 });
 
+// GET USUARIOS
+app.get("/usuarios", (req, res) => {
+  const query = "SELECT * FROM users";
+  db.all(query, (err, row) => {
+    console.log(`GET /usuarios ${JSON.stringify(row)}`);
+    res.render("usertable");
+  });
+});
+
 // GET SOBRE
 app.get("/sobre", (req, res) => {
   // Rota raiz do meu servidor da pagina SOBRE, acesse o browser com o endereço http://localhost:3000/sobre
