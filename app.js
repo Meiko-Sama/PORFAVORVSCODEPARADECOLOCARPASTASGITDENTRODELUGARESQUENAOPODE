@@ -39,21 +39,21 @@ const login = "Você está na página de LOGIN <br> <a href='/'>Voltar</a>";
 // primeiro são os dados do servidor (REQUISITION - 'req') o segundo, são os
 // dados que serão enviados ao cliente (RESULT - 'res')
 
-app.get("/", (req, res) => {
-  // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:3000/
-  // res.send(index);
+// app.get("/", (req, res) => {
+//   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:3000/
+//   // res.send(index);
 
-  console.log("GET / INDEX");
-  // res.render("index"); // Utilizando o render pela pasta views
+//   console.log("GET / INDEX");
+//   // res.render("index"); // Utilizando o render pela pasta views
 
-  res.redirect("/cadastro");
-});
+//   res.redirect("/cadastro");
+// });
 
 // TITULO DIFERENTE
 app.get("/", (req, res) => {
   // Rota raiz do meu servidor da pagina SOBRE, acesse o browser com o endereço http://localhost:3000/sobre
   console.log("GET / INDEX");
-  res.render("../pages/index", {
+  res.render("pages/index", {
     titulo: "BlogSENAINovaOdessa",
   });
 });
