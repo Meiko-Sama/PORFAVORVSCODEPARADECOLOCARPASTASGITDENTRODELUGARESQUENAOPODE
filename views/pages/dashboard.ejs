@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- LINK EXTERNO DO JS e do CSS -->
-    <!-- <script src="../static/js/scripts.js" defer></script> -->
-    <link rel="stylesheet" href="../static/styles/styles.css" />
-
-    <!-- TITULO DO SITE -->
-    <title>Atividade Formulário</title>
-  </head>
+  <%- include("../partials/head") %>
   <body>
-    <%- include("menu") %>
+    <%- include("../partials/menu") %>
     <!-- Chuva -->
 
     <div class="container_rain">
@@ -30,8 +20,8 @@
           Em construção, aguarde imediatamente
         </p>
       </div>
-      <div><%- include("usertable") %></div>
+      <div><%- include("../partials/usertable") %></div>
     </section>
-    <%- include("footer") %>
+    <%- include("../partials/footer") %>
   </body>
 </html>

@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- LINK EXTERNO DO JS e do CSS -->
-    <!-- <script src="../static/js/scripts.js" defer></script> -->
-    <link rel="stylesheet" href="../static/styles/styles.css" />
-
-    <!-- TITULO DO SITE -->
-    <title>Atividade Formulário</title>
-  </head>
+  <%- include("../partials/head") %>
+  <title><%= titulo %></title>
   <body>
-    <%- include("menu") %>
+    <%- include("../partials/menu") %>
     <!-- Chuva -->
 
     <div class="container_rain">
@@ -32,7 +23,7 @@
       </div>
 
       <!-- FORMULARIO -->
-      <form id="cadastro">
+      <form id="cadastro" method="post" action="/cadastro">
         <div class="title">
           <h1>Cadastre-se</h1>
           <p>Preencha os campos abaixo e torne-se parte da nossa comunidade.</p>
@@ -44,8 +35,33 @@
         </div>
 
         <div class="input_data">
+          <input type="email" name="email" id="email" required />
+          <label for="">Email</label>
+        </div>
+
+        <div class="input_data">
           <input type="password" name="password" id="senha" required />
           <label for="">Senha</label>
+        </div>
+
+        <div class="input_data">
+          <input type="password" name="csenha" id="csenha" required />
+          <label for="">Confirmar senha</label>
+        </div>
+
+        <div class="input_data">
+          <input type="tel" name="celular" id="tel" required />
+          <label for="">Telefone</label>
+        </div>
+
+        <div class="input_data">
+          <input type="text" name="cpf" id="cpf" required />
+          <label for="">CPF</label>
+        </div>
+
+        <div class="input_data">
+          <input type="text" name="rg" id="rg" required />
+          <label for="">RG</label>
         </div>
 
         <div class="btnArea">
@@ -54,6 +70,6 @@
         </div>
       </form>
     </section>
-    <%- include("footer") %>
+    <%- include("../partials/footer") %>
   </body>
 </html>

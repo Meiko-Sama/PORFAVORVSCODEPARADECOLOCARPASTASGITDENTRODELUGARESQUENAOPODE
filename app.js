@@ -49,12 +49,21 @@ app.get("/", (req, res) => {
   res.redirect("/cadastro");
 });
 
+// TITULO DIFERENTE
+app.get("/", (req, res) => {
+  // Rota raiz do meu servidor da pagina SOBRE, acesse o browser com o endereço http://localhost:3000/sobre
+  console.log("GET / INDEX");
+  res.render("../pages/index", {
+    titulo: "BlogSENAINovaOdessa",
+  });
+});
+
 // GET USUARIOS
 app.get("/usuarios", (req, res) => {
   const query = "SELECT * FROM users";
   db.all(query, (err, row) => {
     console.log(`GET /usuarios ${JSON.stringify(row)}`);
-    res.render("usertable");
+    res.render("./partials/usertable");
   });
 });
 
@@ -62,21 +71,21 @@ app.get("/usuarios", (req, res) => {
 app.get("/sobre", (req, res) => {
   // Rota raiz do meu servidor da pagina SOBRE, acesse o browser com o endereço http://localhost:3000/sobre
   console.log("GET / SOBRE");
-  res.render("sobre");
+  res.render("./pages/sobre");
 });
 
 // GET LOGIN
 app.get("/login", (req, res) => {
   // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
   console.log("GET / LOGIN");
-  res.render("login");
+  res.render("./pages/login");
 });
 
 // GET LOGIN
 app.get("/dashboard", (req, res) => {
   // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
   console.log("GET / DASHBOARD");
-  res.render("dashboard");
+  res.render("./pages/dashboard");
 });
 
 // POST LOGIN
@@ -90,7 +99,7 @@ app.post("/login", (req, res) => {
 app.get("/cadastro", (req, res) => {
   // Rota raiz do meu servidor da pagina CADASTRO, acesse o browser com o endereço http://localhost:3000/cadastro
   console.log("GET / CADASTRO");
-  res.render("cadastro");
+  res.render("./pages/cadastro");
 });
 
 // POST CADASTRO
