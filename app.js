@@ -72,6 +72,13 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+// GET LOGIN
+app.get("/dashboard", (req, res) => {
+  // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
+  console.log("GET / DASHBOARD");
+  res.render("dashboard");
+});
+
 // POST LOGIN
 app.post("/login", (req, res) => {
   // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
