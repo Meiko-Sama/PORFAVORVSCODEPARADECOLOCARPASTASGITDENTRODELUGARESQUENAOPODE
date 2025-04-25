@@ -7,20 +7,17 @@
       <td scope="col">Celular</td>
     </tr>
   </thead>
+
+  <% for (let i = 1; i < 8; i++) { %>
+
   <tbody>
     <tr>
-      <td>1</td>
-      <td>ID</td>
-      <td>NOME</td>
-      <td>EMAIL</td>
-      <td>CELULAR</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>ID</td>
+      <td><%= i %></td>
       <td>NOME</td>
       <td>EMAIL</td>
       <td>CELULAR</td>
     </tr>
   </tbody>
+
+  <% } %>
 </table>

@@ -6,6 +6,9 @@ const sqlite3 = require("sqlite3"); // importa livraria do sqlite3
 
 const PORT = 3000; // Porta TCP do servidor HTTP da aplicação
 
+// Varoáveis usadas no EJS
+let config = { titulo: "", rodape: "" };
+
 const app = express(); // Instância para o uso do EXPRESS
 
 // Cria conexão com o banco de dados
@@ -53,9 +56,7 @@ const login = "Você está na página de LOGIN <br> <a href='/'>Voltar</a>";
 app.get("/", (req, res) => {
   // Rota raiz do meu servidor da pagina SOBRE, acesse o browser com o endereço http://localhost:3000/sobre
   console.log("GET / INDEX");
-  res.render("pages/index", {
-    titulo: "BlogSENAINovaOdessa",
-  });
+  res.render("pages/index", config);
 });
 
 // GET USUARIOS
@@ -63,29 +64,31 @@ app.get("/usuarios", (req, res) => {
   const query = "SELECT * FROM users";
   db.all(query, (err, row) => {
     console.log(`GET /usuarios ${JSON.stringify(row)}`);
-    res.render("./partials/usertable");
+    res.render("partials/usertable", config);
   });
 });
 
 // GET SOBRE
+
+config = { titulo: "Blog da turma I2HNA - Sesi Nova Odessa", rodape: "" };
 app.get("/sobre", (req, res) => {
   // Rota raiz do meu servidor da pagina SOBRE, acesse o browser com o endereço http://localhost:3000/sobre
   console.log("GET / SOBRE");
-  res.render("./pages/sobre");
+  res.render("pages/sobre", config);
 });
 
 // GET LOGIN
 app.get("/login", (req, res) => {
   // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
   console.log("GET / LOGIN");
-  res.render("./pages/login");
+  res.render("pages/login", config);
 });
 
 // GET LOGIN
 app.get("/dashboard", (req, res) => {
   // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
   console.log("GET / DASHBOARD");
-  res.render("./pages/dashboard");
+  res.render("pages/dashboard", config);
 });
 
 // POST LOGIN
@@ -99,7 +102,7 @@ app.post("/login", (req, res) => {
 app.get("/cadastro", (req, res) => {
   // Rota raiz do meu servidor da pagina CADASTRO, acesse o browser com o endereço http://localhost:3000/cadastro
   console.log("GET / CADASTRO");
-  res.render("./pages/cadastro");
+  res.render("pages/cadastro", config);
 });
 
 // POST CADASTRO
