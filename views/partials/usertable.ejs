@@ -8,16 +8,14 @@
     </tr>
   </thead>
 
-  <% for (let i = 1; i < 8; i++) { %>
-
   <tbody>
+    <% for (let i = 1; i < 10; i++) { %> <% if (i % 3 == 0) { %>
     <tr>
       <td><%= i %></td>
       <td>NOME</td>
       <td>EMAIL</td>
       <td>CELULAR</td>
     </tr>
+    <% } %> <% } %>
   </tbody>
-
-  <% } %>
 </table>

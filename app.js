@@ -2,6 +2,7 @@
 
 const bodyParser = require("body-parser");
 const express = require("express"); // importa livraria do EXPRESS
+const session = require("express-session"); // Importa a lib do session
 const sqlite3 = require("sqlite3"); // importa livraria do sqlite3
 
 const PORT = 3000; // Porta TCP do servidor HTTP da aplicação
@@ -20,6 +21,15 @@ db.serialize(() => {
     "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT, celular TEXT, cpf TEXT, rg TEXT)"
   );
 });
+
+// Configuração para uso de sessão (cookies) com express.
+app.use(
+  session({
+    secret: "qualquersenha",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 // Primeiro parametro é o caminho da URL, enquanto o segundo parâmetro éo caminho da pasta
 app.use("/static", express.static(__dirname + "/static"));

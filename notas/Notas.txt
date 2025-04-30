@@ -98,5 +98,9 @@ Para processar "formulario"HTML/CSS, o método ideal é o POST.
 Problema de GIT HUB - PROBLEMA DE CABECA DE NOVO OQUE TU FAZ?-
 
 
+- CONTROLE DE SESSÃO -
+
+É um recurso utilizado na arquitetura cliente/servidor para sinalizar como o cliente acessa recursos no servidor, muito
+utilizado para controlar paginas e recursos restritos  a nível de usuário popularmente chamado de "COOKIES".
 
 
