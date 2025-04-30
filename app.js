@@ -105,7 +105,27 @@ app.get("/dashboard", (req, res) => {
 app.post("/login", (req, res) => {
   // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
   console.log("POST / LOGIN");
-  res.send("login ainda não emplementado.");
+  const { username, password } = req.body;
+
+  // Consultar o usuário no banco de dados.
+  const query = "SELECT * FROM users WHERE username = ? AND password = ?";
+
+  db.get(query, [username, password], (err, row) => {
+    if (err) throw err;
+
+    // Se o usuário valido -> Registra a sessão e redireciona para o dashboard.
+    if (row) {
+      req.session.loggedin = true;
+      req.session.username = username;
+      res.redirect("/dashboard");
+    }
+    // Se não, envia mensagem de erro (USUARIO INVALIDO)
+    else {
+      res.send("Usuário Inválido");
+    }
+  });
+
+  // res.send("login ainda não emplementado.");
 });
 
 // GET CADASTRO
