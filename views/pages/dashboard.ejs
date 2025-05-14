@@ -15,10 +15,7 @@
     <section class="container">
       <div class="imagem_container">
         <h1>Usuarios da Tabela</h1>
-        <p>
-          Todos os usuarios <br />
-          da Tabela
-        </p>
+        <p>Bem vindo de volta <%= req.session.username %></p>
       </div>
       <div><%- include("../partials/usertable") %></div>
     </section>

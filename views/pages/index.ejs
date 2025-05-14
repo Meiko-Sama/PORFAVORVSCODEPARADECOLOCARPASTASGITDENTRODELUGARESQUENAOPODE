@@ -16,60 +16,9 @@
     <!-- SEÇÃO QUE ENGLOBA O TITULO E IMAGEM -->
     <section class="container">
       <div class="imagem_container">
-        <h1>Crie sua Conta</h1>
-        <p>
-          Compartilhe suas aventuras e <br />
-          descubra novos lugares ao redor do mundo!
-        </p>
+        <h1>HOME</h1>
+        <p>BLOG SQLITE</p>
       </div>
-
-      <!-- FORMULARIO -->
-      <form id="cadastro" method="post" action="./pages/cadastro.ejs">
-        <div class="title">
-          <h1>Cadastre-se</h1>
-          <p>Preencha os campos abaixo e torne-se parte da nossa comunidade.</p>
-        </div>
-
-        <div class="input_data">
-          <input type="text" name="username" id="nome" required />
-          <label for="">Nome</label>
-        </div>
-
-        <div class="input_data">
-          <input type="email" name="email" id="email" required />
-          <label for="">Email</label>
-        </div>
-
-        <div class="input_data">
-          <input type="password" name="password" id="senha" required />
-          <label for="">Senha</label>
-        </div>
-
-        <div class="input_data">
-          <input type="password" name="csenha" id="csenha" required />
-          <label for="">Confirmar senha</label>
-        </div>
-
-        <div class="input_data">
-          <input type="tel" name="celular" id="tel" required />
-          <label for="">Telefone</label>
-        </div>
-
-        <div class="input_data">
-          <input type="text" name="cpf" id="cpf" required />
-          <label for="">CPF</label>
-        </div>
-
-        <div class="input_data">
-          <input type="text" name="rg" id="rg" required />
-          <label for="">RG</label>
-        </div>
-
-        <div class="btnArea">
-          <p class="msgError"></p>
-          <button id="btnSubmit" type="submit">Enviar</button>
-        </div>
-      </form>
     </section>
     <%- include("../partials/footer") %>
   </body>

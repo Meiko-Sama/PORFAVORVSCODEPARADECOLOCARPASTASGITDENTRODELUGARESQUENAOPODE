@@ -66,15 +66,15 @@ const login = "Você está na página de LOGIN <br> <a href='/'>Voltar</a>";
 app.get("/", (req, res) => {
   // Rota raiz do meu servidor da pagina SOBRE, acesse o browser com o endereço http://localhost:3000/sobre
   console.log("GET / INDEX");
-  res.render("pages/index", config);
+  res.render("pages/index", { ...config, req: req });
 });
 
 // GET USUARIOS
 app.get("/usuarios", (req, res) => {
   const query = "SELECT * FROM users";
   db.all(query, (err, row) => {
+    if (err) throw err;
     console.log(`GET /usuarios ${JSON.stringify(row)}`);
-    res.render("partials/usertable", config);
   });
 });
 
@@ -84,21 +84,21 @@ config = { titulo: "Blog da turma I2HNA - Sesi Nova Odessa", rodape: "" };
 app.get("/sobre", (req, res) => {
   // Rota raiz do meu servidor da pagina SOBRE, acesse o browser com o endereço http://localhost:3000/sobre
   console.log("GET / SOBRE");
-  res.render("pages/sobre", config);
+  res.render("pages/sobre", { ...config, req: req });
 });
 
 // GET LOGIN
 app.get("/login", (req, res) => {
   // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
   console.log("GET / LOGIN");
-  res.render("pages/login", config);
+  res.render("pages/login", { ...config, req: req });
 });
 
 // GET LOGIN
 app.get("/dashboard", (req, res) => {
   // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
   console.log("GET / DASHBOARD");
-  res.render("pages/dashboard", config);
+  res.render("pages/dashboard", { ...config, req: req });
 });
 
 // POST LOGIN
@@ -128,11 +128,20 @@ app.post("/login", (req, res) => {
   // res.send("login ainda não emplementado.");
 });
 
+app.get("/logout", (req, res) => {
+  console.log("GET /logout");
+  // O req.session armazena os dados da sessão, o destroy serve justamente para destruir todos os dados dentroda sessão quando o ususario estava logado
+  req.session.destroy(() => {
+    // Estamos usando esse redirect para mandar a pagina principal
+    res.redirect("/");
+  });
+});
+
 // GET CADASTRO
 app.get("/cadastro", (req, res) => {
   // Rota raiz do meu servidor da pagina CADASTRO, acesse o browser com o endereço http://localhost:3000/cadastro
   console.log("GET / CADASTRO");
-  res.render("pages/cadastro", config);
+  res.render("pages/cadastro", { ...config, req: req });
 });
 
 // POST CADASTRO
@@ -175,6 +184,8 @@ app.post("/cadastro", (req, res) => {
       );
     }
   });
+
+  // O logout vai servir para desconectar o usuario da sessão
 
   // O app.listen() precisa ser SEMPRE ser executado por último. (app.js)
 });
