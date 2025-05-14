@@ -98,7 +98,22 @@ app.get("/login", (req, res) => {
 app.get("/dashboard", (req, res) => {
   // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
   console.log("GET / DASHBOARD");
-  res.render("pages/dashboard", { ...config, req: req });
+
+  if (req.session.loggedin) {
+    db.all("SELECT * FROM users", [], (err, row) => {
+      if (err) throw err;
+      res.render("pages/dashboard", { ...config, dados: row, req: req });
+    });
+  } else {
+    console.log("Tentava de acesso a área restrita");
+    res.redirect("/");
+  }
+});
+
+app.get("/error", (req, res) => {
+  // Rota raiz do meu servidor da pagina LOGIN, acesse o browser com o endereço http://localhost:3000/login
+  console.log("GET / ERROR");
+  res.render("pages/error", { ...config, req: req });
 });
 
 // POST LOGIN
@@ -185,10 +200,14 @@ app.post("/cadastro", (req, res) => {
     }
   });
 
-  // O logout vai servir para desconectar o usuario da sessão
-
   // O app.listen() precisa ser SEMPRE ser executado por último. (app.js)
 });
+// Esse app.use serve para capturar rotas não existentes e mandar para página de erro!
+app.use("*", (req, res) => {
+  // Envia uma resposta de erro 404
+  res.status(404).render("pages/error", { ...config, req: req });
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor sendo executado na porta ${PORT}!`);
 });

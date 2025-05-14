@@ -1,3 +1,6 @@
+<% console.log(`usertable.ejs -> dados: ${JSON.stringify(dados)}`); %> <%
+if(req.session.loggedin) { %>
+
 <table>
   <thead>
     <tr>
@@ -9,13 +12,38 @@
   </thead>
 
   <tbody>
-    <% for (let i = 1; i < 10; i++) { %> <% if (i % 3 == 0) { %>
-    <tr>
-      <td><%= i %></td>
-      <td>NOME</td>
-      <td>EMAIL</td>
-      <td>CELULAR</td>
-    </tr>
-    <% } %> <% } %>
+    <% let index = 1; dados.forEach(user => { %> <tr <%-
+    req.session.username==user.username ? `style="color: white; font-style:
+    bold"` : `` %>>
+    <td><%= user.id %></td>
+    <td><%= user.username %></td>
+    <td><%= user.email %></td>
+    <td><%= user.celular%></td>
+    <td><%= user.password%></td>
+    <% index++; }); %>
   </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="5" style="font-size: 16px">
+        <%= `Usuários registrados: ${index-1}` %>
+      </th>
+    </tr>
+  </tfoot>
 </table>
+
+<% } else { %>
+<main
+  style="
+    padding: 20px;
+    text-align: center;
+    border: 10px solid red;
+    background-color: red;
+    font-size: 64px;
+    border-radius: 150px;
+  "
+>
+  ACESSO RESTRITO!!! <br />
+  VOCÊ FOI PARA O Sal(??????)!!! <br />
+  A POLICIA FEDERAL IRÁ APARECER NA SUA CA AMANHÃ!!!
+</main>
+<% } %>
